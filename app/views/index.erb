@@ -1,0 +1,21 @@
+<h1>Welcome to Sinatra!</h1>
+<p>Hello, world!</p>
+
+<table>
+  <tr>
+    <th style="text-align: left">File Description</th>
+    <th style="text-align: left">File Location</th>
+  </tr>
+  <tr>
+    <td>This view file</td>
+    <td><code><%= __FILE__ %></code></td>
+  </tr>
+  <tr>
+    <td>The layout file</td>
+    <td><code><%= File.expand_path('../layout.erb', __FILE__) %></code></td>
+  </tr>
+  <tr>
+    <td>The current controller</td>
+    <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__) %></code></td>
+  </tr>
+</table>

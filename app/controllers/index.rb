@@ -1,3 +1,4 @@
 get '/' do
-  "Hello, world!"
+  # Look in app/views/index.erb
+  erb :index
 end

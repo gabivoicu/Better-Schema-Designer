@@ -86,16 +86,16 @@ namespace :generate do
 end
 
 namespace :db do
-  desc "Create the database at #{DB_NAME}"
+  desc "Create the databases at #{DB_NAME}"
   task :create do
-    puts "Creating database #{DB_NAME} if it doesn't exist..."
-    exec("createdb #{DB_NAME}")
+    puts "Creating development and test databases if they don't exist..."
+    exec("createdb #{APP_NAME}_development && createdb #{APP_NAME}_test")
   end
 
   desc "Drop the database at #{DB_NAME}"
   task :drop do
-    puts "Dropping database #{DB_NAME}..."
-    exec("dropdb #{DB_NAME}")
+    puts "Dropping development and test databases..."
+    exec("dropdb #{APP_NAME}_development && dropdb #{APP_NAME}_test")
   end
 
   desc "Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
@@ -106,6 +106,14 @@ namespace :db do
       ENV["SCOPE"].blank? || (ENV["SCOPE"] == migration.scope)
     end
   end
+
+  namespace :test do
+    desc "Migrate test database"
+    task :prepare do
+      exec "rake db:migrate RACK_ENV=test"
+    end
+  end
+
 
   desc "Populate the database with dummy data by running db/seeds.rb"
   task :seed do

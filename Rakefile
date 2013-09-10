@@ -86,16 +86,19 @@ namespace :generate do
 end
 
 namespace :db do
+  desc "Drop, create, and migrate the database"
+  task :reset => [:drop, :create, :migrate]
+
   desc "Create the databases at #{DB_NAME}"
   task :create do
     puts "Creating development and test databases if they don't exist..."
-    exec("createdb #{APP_NAME}_development && createdb #{APP_NAME}_test")
+    system("createdb #{APP_NAME}_development && createdb #{APP_NAME}_test")
   end
 
   desc "Drop the database at #{DB_NAME}"
   task :drop do
     puts "Dropping development and test databases..."
-    exec("dropdb #{APP_NAME}_development && dropdb #{APP_NAME}_test")
+    system("dropdb #{APP_NAME}_development && dropdb #{APP_NAME}_test")
   end
 
   desc "Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
@@ -107,14 +110,6 @@ namespace :db do
     end
   end
 
-  namespace :test do
-    desc "Migrate test database"
-    task :prepare do
-      exec "rake db:migrate RACK_ENV=test"
-    end
-  end
-
-
   desc "Populate the database with dummy data by running db/seeds.rb"
   task :seed do
     require APP_ROOT.join('db', 'seeds.rb')
@@ -123,6 +118,13 @@ namespace :db do
   desc "Returns the current schema version number"
   task :version do
     puts "Current version: #{ActiveRecord::Migrator.current_version}"
+  end
+
+  namespace :test do
+    desc "Migrate test database"
+    task :prepare do
+      system "rake db:migrate RACK_ENV=test"
+    end
   end
 end
 

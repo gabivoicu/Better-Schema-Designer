@@ -1,9 +1,9 @@
 class Demo
-  def initialize(web_client)
-    @web_client = web_client
+  def initialize(application)
+    @application = application
   end
 
   def info
-    @web_client.type
+    @application.response.to_json
   end
 end

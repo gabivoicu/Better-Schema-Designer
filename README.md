@@ -5,6 +5,11 @@ The Sinatra Skeleton:
 2. Demonstrates a reasonable set of practices around building Sinatra applications.
 3. Eases the transition to Rails for Dev Bootcamp students
 
+### Quickstart
+
+1.  `bundle install`
+2.  `thin start`
+
 ### Contributing
 
 We would love for you to help make the skeleton more awesome, There are three ways to contribute:

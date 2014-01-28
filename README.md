@@ -8,7 +8,7 @@ The Sinatra Skeleton:
 ### Quickstart
 
 1.  `bundle install`
-2.  `thin start`
+2.  `shotgun config.ru`
 
 ### Contributing
 

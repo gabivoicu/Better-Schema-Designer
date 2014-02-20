@@ -21,10 +21,10 @@ gem 'shotgun'
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
+  gem 'rspec'
 end
 
 group :test, :development do
-  gem 'rspec'
   gem 'factory_girl'
   gem 'faker'
 end

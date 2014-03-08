@@ -13,6 +13,10 @@ post '/bands' do
   new_band.name
 end
 
+get '/bands/new' do
+  erb :new_band
+end
+
 get '/info' do
   Demo.new(self).info
 end

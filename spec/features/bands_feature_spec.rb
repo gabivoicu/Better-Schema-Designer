@@ -2,11 +2,12 @@ require 'spec_helper'
 
 Capybara.app = app
 
-feature "Band Fandom" do
-  scenario "User creates a new band" do
+feature "User adds a band" do
+  scenario "by providing a band name" do
+    band_name =  "Rao and the Oarsmen"
+
     visit new_bands_path
 
-    band_name =  "Rao and the Oarsmen"
     fill_in "name", :with => band_name
     click_button "Add Band"
 

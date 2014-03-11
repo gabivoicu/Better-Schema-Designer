@@ -6,6 +6,6 @@ describe "Demo Service" do
     stub_response =  "Successful test"
     stub_application = OpenStruct.new({ :response => stub_response })
     d = Demo.new(stub_application)
-    d.info.should == %q,"Successful test",
+    expect(d.info).to eq(%q,"Successful test",)
   end
 end

@@ -10,7 +10,16 @@ end
 
 post '/bands' do
   new_band = Band.create!(name: params[:name])
-  new_band.name
+  redirect "/bands/#{new_band.id}"
+end
+
+get '/bands/new' do
+  erb :new_band
+end
+
+get '/bands/:id' do
+  @band = Band.find(params[:id])
+  erb :show_band
 end
 
 get '/info' do

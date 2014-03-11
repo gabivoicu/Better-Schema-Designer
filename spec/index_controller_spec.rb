@@ -23,9 +23,7 @@ describe "IndexController (this is a skeleton controller test!)" do
       expect{
         post('/bands', new_params, new_session)
       }.to change(Band, :count).by(1)
-
-      expect(last_response).to be_ok
-      expect(last_response.body).to eq(band_name)
+      last_response.should be_redirect
     end
   end
 end

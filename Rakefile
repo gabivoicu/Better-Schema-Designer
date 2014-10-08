@@ -108,10 +108,10 @@ namespace :db do
     end
   end
 
-  desc "rollback your migration--use STEPS=number to step back multiple times"
+  desc "rollback your migration--use STEP=number to step back multiple times"
   task :rollback do
-    steps = (ENV['STEPS'] || 1).to_i
-    ActiveRecord::Migrator.rollback('db/migrate', steps)
+    step = (ENV['STEP'] || 1).to_i
+    ActiveRecord::Migrator.rollback('db/migrate', step)
     Rake::Task['db:version'].invoke if Rake::Task['db:version']
   end
 

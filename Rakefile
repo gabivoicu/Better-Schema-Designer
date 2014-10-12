@@ -108,6 +108,13 @@ namespace :db do
     end
   end
 
+  desc "rollback your migration--use STEP=number to step back multiple times"
+  task :rollback do
+    step = (ENV['STEP'] || 1).to_i
+    ActiveRecord::Migrator.rollback('db/migrate', step)
+    Rake::Task['db:version'].invoke if Rake::Task['db:version']
+  end
+
   desc "Populate the database with dummy data by running db/seeds.rb"
   task :seed do
     require APP_ROOT.join('db', 'seeds.rb')

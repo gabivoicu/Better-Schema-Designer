@@ -14,7 +14,9 @@ body {
 
 #area {
 	position: relative;
-	background: transparent url(../images/back.png);
+	/* this give the grid background: */
+	/*background: transparent url(../images/back.png);*/
+	background-color: #fff;
 	width: 2000px;
 	height: 2000px;
 }
@@ -244,4 +246,9 @@ label, input, select {
 	background: #888;
 	opacity: 0.5;
 	visibility: hidden;
+}
+
+.ttv{
+	border: 1px solid black;
+	padding: 5px;
 }

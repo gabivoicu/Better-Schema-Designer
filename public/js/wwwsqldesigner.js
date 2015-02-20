@@ -658,8 +658,48 @@ SQL.Table.prototype.init = function(owner, name, x, y, z) {
 	this.snap();
 }
 
+
+function TrueTableView(ozTable) {
+	this.ozTable = ozTable;
+	this.ozElement = this.ozTable.dom.container;
+};
+
+TrueTableView.prototype.render = function() {
+	var markup = $("<table class='ttv'>\
+		<tr class='ttv'>\
+			<td class='ttv'>id</td><td class='ttv'>name</td><td class='ttv'>age</td>\
+		</tr>\
+	</table>");
+
+	markup.css('position', "absolute");
+	markup.css('left', '400px');
+	markup.css('top', '200px');
+
+	$("body").append(markup);
+
+};
+
+TrueTableView.prototype.debug = function() {
+	console.log("----------------------")
+	this.ozTable.rows.forEach(function(row) {
+		console.log(row.data.title + ": " + row.data.type);
+	})
+}
+
+
+
 SQL.Table.prototype._build = function() {
 	this.dom.container = OZ.DOM.elm("div", {className:"table"});
+
+	var ozTable = this;
+	this.ttV = new TrueTableView(ozTable);
+	ozTable.ttV.render();
+
+	this.dom.container.addEventListener('click', function(event) {	
+		ozTable.ttV.debug();
+	});
+
+
 	this.dom.content = OZ.DOM.elm("table");
 	var thead = OZ.DOM.elm("thead");
 	var tr = OZ.DOM.elm("tr");
@@ -680,6 +720,7 @@ SQL.Table.prototype._build = function() {
 	this._ec.push(OZ.Event.add(this.dom.container, "mousedown", this.bind(this.down)));
 	this._ec.push(OZ.Event.add(this.dom.container, "touchstart", this.bind(this.down)));
 	this._ec.push(OZ.Event.add(this.dom.container, "touchmove", OZ.Event.prevent));
+
 }
 
 SQL.Table.prototype.setTitle = function(t) {

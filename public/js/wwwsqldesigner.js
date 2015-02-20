@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 function _(str) { /* getText */
 	if (!(str in window.LOCALE)) { return str; }
 	return window.LOCALE[str];
@@ -634,7 +635,7 @@ SQL.Relation.prototype.destroy = function() {
 		this.dom[i].parentNode.removeChild(this.dom[i]);
 	}
 }
-
+/* jshint ignore:end */
 /* --------------------- db table ------------ */
 
 SQL.Table = OZ.Class().extend(SQL.Visual);
@@ -665,17 +666,49 @@ function TrueTableView(ozTable) {
 };
 
 TrueTableView.prototype.render = function() {
-	var markup = $("<table class='ttv'>\
-		<tr class='ttv'>\
-			<td class='ttv'>id</td><td class='ttv'>name</td><td class='ttv'>age</td>\
-		</tr>\
-	</table>");
+	// var markup = "<tr class='ttv'>";
+	test = "";
+	this.ozTable.rows.forEach(function(row) {
+		console.log(row.data.title + ": " + row.data.type);
+		test += '<td class="table_data">' + row.data.title + '</td>'
+	
+    // markup = $(test);
+	});
+  // console.log(markup)
 
-	markup.css('position', "absolute");
-	markup.css('left', '400px');
-	markup.css('top', '200px');
 
-	$("body").append(markup);
+		test1 = "<table class='ttv'><tr class='ttv'>"
+		test2 = '</tr></table>'
+    tinal = test1 + test + test2
+
+
+ //    if row.data.type = 0 
+ //    	t
+
+	// 5 times do
+	// <tr>
+	// 	this.ozTable.rows.length {
+	// 		tinal.add("<td></td>")
+	// 	}
+	// 	</tr>
+	// end    
+
+	// this.ozTable.rows.forEach(function(row) {
+	// 	markup += "<td class='ttv'>" + row.data.title + "</td>";
+	// }
+	// complet_markup = "<table class='ttv'>" + markup + "</tr></table>";
+
+	// var markup = $("<table class='ttv'>\
+	// 	<tr class='ttv'>\
+	// 		<d tclass='ttv'>id</td><td class='ttv'>name</td><td class='ttv'>age</td>\
+	// 	</tr>\
+	// </table>");
+
+	$(tinal).css('position', "absolute");
+	$(tinal).css('left', '400px');
+	$(tinal).css('top', '200px');
+
+	$("body").append(tinal);
 
 };
 
@@ -693,10 +726,10 @@ SQL.Table.prototype._build = function() {
 
 	var ozTable = this;
 	this.ttV = new TrueTableView(ozTable);
-	ozTable.ttV.render();
 
 	this.dom.container.addEventListener('click', function(event) {	
-		ozTable.ttV.debug();
+		// ozTable.ttV.debug();
+		ozTable.ttV.render();
 	});
 
 

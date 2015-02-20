@@ -249,6 +249,18 @@ label, input, select {
 }
 
 .ttv{
+	/*border: 1px solid black;*/
+	padding: 5px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.table_data{
 	border: 1px solid black;
 	padding: 5px;
+}
+
+tr, th, td {
+	border: 1px solid black;
 }

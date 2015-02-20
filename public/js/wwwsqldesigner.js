@@ -671,15 +671,12 @@ TrueTableView.prototype.render = function() {
 	this.ozTable.rows.forEach(function(row) {
 		console.log(row.data.title + ": " + row.data.type);
 		test += '<td class="table_data">' + row.data.title + '</td>'
-	
+	  
     // markup = $(test);
 	});
-  // console.log(markup)
+   	// x = "<tr class='ttv'>"
+    // y = "</tr>"
 
-
-		test1 = "<table class='ttv'><tr class='ttv'>"
-		test2 = '</tr></table>'
-    tinal = test1 + test + test2
 
 
  //    if row.data.type = 0 
@@ -691,8 +688,22 @@ TrueTableView.prototype.render = function() {
 	// 		tinal.add("<td></td>")
 	// 	}
 	// 	</tr>
-	// end    
+	// end   
+	console.log(this.ozTable.rows.length);
 
+	var blank_rows = "";
+	for(var i = 0; i <= 5; i++){
+		blank_rows += "<tr>"+i;
+		for(var j=0; j <= this.ozTable.rows.length - 1; j++){
+			if (this.ozTable.rows[j].data.type == 0) {
+      	// blank_rows += "<td>2</td>"}
+      	blank_rows += "<td>"+ i + "</td>"}
+
+      else {blank_rows += "<td>test</td>"}
+		};
+		blank_rows += "</tr>";
+	};
+console.log(blank_rows)
 	// this.ozTable.rows.forEach(function(row) {
 	// 	markup += "<td class='ttv'>" + row.data.title + "</td>";
 	// }
@@ -703,6 +714,11 @@ TrueTableView.prototype.render = function() {
 	// 		<d tclass='ttv'>id</td><td class='ttv'>name</td><td class='ttv'>age</td>\
 	// 	</tr>\
 	// </table>");
+	// tinal += blank_rows;
+
+		test1 = "<table class='ttv'>"
+		test2 = '</table>'
+    tinal = test1 + test + blank_rows + test2 
 
 	$(tinal).css('position', "absolute");
 	$(tinal).css('left', '400px');

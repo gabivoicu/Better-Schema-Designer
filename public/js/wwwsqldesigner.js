@@ -679,9 +679,11 @@ TrueTableView.prototype.render = function() {
 			if (this.ozTable.rows[j].data.title == "id") {
       	table_rows += "<td>"+ i + "</td>"}
       else if (this.ozTable.rows[j].data.title == "name") {
-  			table_rows += "<td>Fake Name" + " " + i + "</td>"}
+  			table_rows += "<td>" + faker.name.findName() + "</td>"}
       else if (this.ozTable.rows[j].data.title == "email") {
-  			table_rows += "<td>fakeemail" + i + "@me.com</td>"}
+  			table_rows += "<td>" + faker.internet.email() + "</td>"}
+	    else if (this.ozTable.rows[j].data.title == "password") {
+				table_rows += "<td>" + faker.internet.password() + "</td>"}
 	    else if (this.ozTable.rows[j].data.type == 0) {
 				table_rows += "<td>" + Math.floor((Math.random() * 100) + 1) + "</td>"}
 		};

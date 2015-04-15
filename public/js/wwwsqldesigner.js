@@ -673,12 +673,17 @@ TrueTableView.prototype.render = function() {
 	});
 
 	var table_rows = "";
-	for(var i = 0; i <= 5; i++){ // we create 5 fake entries in our table
+	for(var i = 1; i <= 10; i++){ // we create 10 fake entries in our table
 		table_rows += "<tr>"+i;
 		for(var j=0; j <= this.ozTable.rows.length - 1; j++){
-			if (this.ozTable.rows[j].data.type == 0) {
+			if (this.ozTable.rows[j].data.title == "id") {
       	table_rows += "<td>"+ i + "</td>"}
-      else {table_rows += "<td>Test</td>"}
+      else if (this.ozTable.rows[j].data.title == "name") {
+  			table_rows += "<td>Fake Name" + " " + i + "</td>"}
+      else if (this.ozTable.rows[j].data.title == "email") {
+  			table_rows += "<td>fakeemail" + i + "@me.com</td>"}
+	    else if (this.ozTable.rows[j].data.type == 0) {
+				table_rows += "<td>" + Math.floor((Math.random() * 100) + 1) + "</td>"}
 		};
 		table_rows += "</tr>";
 	};
@@ -687,11 +692,11 @@ TrueTableView.prototype.render = function() {
 	close_table_tag = '</table>'
   table_markup = open_table_tag + table_head + table_rows + close_table_tag
 
-	$(table_markup).css('position', "absolute");
+	$(table_markup).css('position', "relative");
 	$(table_markup).css('left', '400px');
 	$(table_markup).css('top', '200px');
 
-	$("#area").append(table_markup);
+	$("#db-table").append(table_markup);
 
 };
 
